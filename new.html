@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .main-heading {
+            color: red;
+            padding: 10px;
+            font-family: "Playfair display";
+            font-weight: bold;
+            font-size: 32px;
+        }
+
+        #calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+        }
+
+        #display {
+            padding: 10px;
+            text-align: right;
+            font-size: 1.5em;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            background-color: #eee;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        button.operator {
+            background-color: #f8c400;
+            color: #fff;
+        }
+
+        button.operator:hover {
+            background-color: #e0b300;
+        }
+        .lower {
+            display: flex;
+            flex-direction: column;
+        }
+        .lower-heading {
+            color: rgb(193, 191, 191);
+            font-size: 20px;
+            font-family: cursive;
+        }
+        .heading1 {
+            font-family: "bree serif";
+            font-size: 20px;
+            margin: 0px;
+            text-decoration: underline;
+        }
+        .social-media-images {
+            height: 50px;
+            margin: 10px;
+        }
+        .lower-set{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <div class="lower">
+    <div>
+        <h1 class="main-heading">Simple Calculator</h1>
+    </div>
+    <div id="calculator">
+        <div id="display">
+        </div>
+        <div id="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">/</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator">*</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator">-</button>
+            <button>0</button>
+            <button>.</button>
+            <button class="operator">=</button>
+            <button class="operator">+</button>
+            <button class="operator">C</button>
+        </div>
+    </div>
+    <p>Calculator.net's sole focus is to provide fast, comprehensive, convenient, free online calculators in a plethora of areas</p>
+    <h1 class="heading1">More About me:</h1>
+    <div class="lower-set">
+            <div>
+                <a href="https://www.linkedin.com/in/shiva-guntoju-944144241 " target="_blank">
+                    <img class="social-media-images" src="https://1000logos.net/wp-content/uploads/2017/03/Linkedin-Logo.png" />
+                </a>
+            </div>
+
+            <div>
+                <a href="https://github.com/8372738665" target="_blank">
+                    <img class="social-media-images" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzFQAzDc8TRNcsSQ6o2Nll48B9mGDC9-jBoQ&usqp=CAU" />
+                </a>
+            </div>
+    </div>
+    <h1 class="lower-heading">@SHIVAGUNTOJU</h1>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const display = document.getElementById('display');
+            const buttons = document.getElementById('buttons');
+            let currentInput = '';
+            let currentOperator = '';
+
+            buttons.addEventListener('click', function(event) {
+                if (event.target.tagName === 'BUTTON') {
+                    const buttonText = event.target.textContent;
+
+                    if (!isNaN(buttonText) || buttonText === '.') {
+                        // Number or decimal button clicked
+                        currentInput += buttonText;
+                    } else if (buttonText === 'C') {
+                        // Clear button clicked
+                        currentInput = '';
+                        currentOperator = '';
+                    } else if (buttonText === '=') {
+                        // Equal button clicked
+                        if (currentInput !== '') {
+                            currentInput = eval(currentInput);
+                        }
+                    }else {
+                        // Operator button clicked
+                        if (currentInput !== '') {
+                            currentOperator = buttonText;
+                            currentInput += buttonText;
+                        }
+                    }
+
+                    // Update display
+                    display.textContent = currentInput;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
